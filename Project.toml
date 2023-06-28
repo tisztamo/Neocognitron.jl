@@ -1,0 +1,7 @@
+name = "Neocognitron"
+uuid = "18dc41ea-5923-4875-9a7f-895da3a524b9"
+authors = ["Schäffer Krisztián <tisztamo@nore.ply>"]
+version = "0.1.0"
+
+[deps]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
