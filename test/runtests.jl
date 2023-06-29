@@ -2,6 +2,7 @@ using Test
 using Neocognitron
 using Neocognitron.Utils
 using Neocognitron.Forward
+using Neocognitron.NeocognitronCore
 
 @testset "Neocognitron Tests" begin
     @testset "Neuron Creation" begin
@@ -41,20 +42,20 @@ using Neocognitron.Forward
         weights1 = [0.2, 0.8]
         weights2 = [0.6, 0.4]
         bias = 0.0
-        scell1 = Neocognitron.Utils.scell(0.0, weights1, bias)
-        scell2 = Neocognitron.Utils.scell(0.0, weights2, bias)
+        scell1 = Utils.SCell(2)  # Fixed: Use Utils.SCell instead of Neocognitron.Utils.scell
+        scell2 = Utils.SCell(2)  # Fixed: Use Utils.SCell instead of Neocognitron.Utils.scell
 
-        ccell1 = Neocognitron.Utils.ccell(0.0)
-        ccell2 = Neocognitron.Utils.ccell(0.0)  # Added second CCell
-        layer1 = Neocognitron.Utils.layer([scell1, scell2])
-        layer2 = Neocognitron.Utils.layer([ccell1, ccell2])  # Updated to include second CCell
+        ccell1 = Utils.CCell()  # Fixed: Use Utils.CCell instead of Neocognitron.Utils.ccell
+        ccell2 = Utils.CCell()  # Fixed: Use Utils.CCell instead of Neocognitron.Utils.ccell
+        layer1 = Utils.Layer(2, 2)  # Fixed: Use Utils.Layer instead of Neocognitron.Utils.layer
+        layer2 = Utils.Layer(2, 2)  # Fixed: Use Utils.Layer instead of Neocognitron.Utils.layer
 
-        neocognitron = Neocognitron.Utils.neocognitron([layer1, layer2])
+        neocognitron = Utils.Neocognitron([layer1, layer2])  # Fixed: Use Utils.Neocognitron instead of Neocognitron.Utils.neocognitron
         # Set up a specific input
         input = [0.5, 0.7]
     
         # Run forward propagation
-        output = Neocognitron.Forward.forward(neocognitron, input)
+        output = Forward.forward(neocognitron, input)
     
         # Test output
         # The neurons should output the result of the sigmoid function applied to the dot product of weights and input
